@@ -1,0 +1,17 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: location-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3314/location_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
