@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: location-service
+    name: spoilage-service
 
   datasource:
     url: jdbc:mysql://localhost:3314/spoilage_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
