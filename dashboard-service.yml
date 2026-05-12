@@ -4,3 +4,121 @@ server:
 spring:
   application:
     name: dashboard-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3318/dashboard_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  # ===============================
+  # REDIS CONFIG
+  # ===============================
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  cache:
+    type: redis
+
+  # ===============================
+  # KAFKA CONFIG
+  # ===============================
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      group-id: dashboard-group
+
+      auto-offset-reset: earliest
+
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+
+# ===============================
+# EUREKA CONFIG
+# ===============================
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    prefer-ip-address: true
+
+# ===============================
+# FEIGN CLIENT CONFIG
+# ===============================
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+
+# ===============================
+# RESILIENCE4J CIRCUIT BREAKER
+# ===============================
+resilience4j:
+  circuitbreaker:
+    instances:
+
+      product-service:
+        failure-rate-threshold: 50
+        sliding-window-size: 10
+
+      supplier-service:
+        failure-rate-threshold: 50
+        sliding-window-size: 10
+
+      batch-service:
+        failure-rate-threshold: 50
+        sliding-window-size: 10
+
+# ===============================
+# ACTUATOR
+# ===============================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    health:
+      show-details: always
+      
+
+# ===============================
+# LOGGING
+# ===============================
+logging:
+  level:
+    root: INFO
+    com.ecobite.dashboard_service: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
