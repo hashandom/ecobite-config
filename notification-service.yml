@@ -6,7 +6,7 @@ spring:
     name: notification-service
 
   datasource:
-    url: jdbc:mysql://localhost:3316/notification_db
+    url: jdbc:mysql://localhost:4316/notification_db
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
