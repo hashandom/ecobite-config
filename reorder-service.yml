@@ -34,3 +34,5 @@ eureka:
 
   instance:
     prefer-ip-address: true
+
+# before convert into docker images 
