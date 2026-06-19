@@ -23,8 +23,9 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
-app:
-  system-token: ${SYSTEM_TOKEN}
+system:
+  username: ${SYSTEM_USERNAME}
+  password: ${SYSTEM_PASSWORD}
 
 eureka:
   client:
