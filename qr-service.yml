@@ -26,3 +26,4 @@ eureka:
 
 qr:
   storage-path: /app/qrcodes
+  public-url: http://localhost:8086
